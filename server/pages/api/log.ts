@@ -7,7 +7,7 @@ import {
   ApiFailureResponse,
   LogApiRequest,
   LogApiSuccessResponse,
-} from "@rebuff/sdk";
+} from "@rebuff/sdk/api";
 const cors = Cors({
   methods: ["POST"],
 });

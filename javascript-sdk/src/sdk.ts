@@ -36,19 +36,22 @@ export default class RebuffSdk implements Rebuff {
 
   constructor(config: SdkConfig) {
     this.pinecone = { index: "" };
+    
     this.openai = {
-      conn: getOpenAIInstance(config.openai.apikey),
-      model: config.openai.model || "gpt-3.5-turbo",
+      conn: getOpenAIInstance(config.openai?.apikey),
+      model: config.openai?.model || "gpt-3.5-turbo",
     };
-    (async () => {
-      this.pinecone = {
-        conn: await initPinecone(
-          config.pinecone.environment,
-          config.pinecone.apikey
-        ),
-        index: config.pinecone.index,
-      };
-    })();
+    
+    if(config.pinecone.environment && config.pinecone.apikey)
+      (async () => {
+        this.pinecone = {
+          conn: await initPinecone(
+            config.pinecone.environment,
+            config.pinecone.apikey
+          ),
+          index: config.pinecone.index,
+        };
+      })();
   }
 
   async detectInjection({

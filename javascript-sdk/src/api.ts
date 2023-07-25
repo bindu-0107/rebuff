@@ -12,6 +12,11 @@ function encodeString(message: string): string {
   return Buffer.from(message, "utf-8").toString("hex");
 }
 
+export interface ApiFailureResponse{
+  error: string;
+  message: string;
+}
+
 export interface LogApiRequest {
   user_input: string;
   completion: string;

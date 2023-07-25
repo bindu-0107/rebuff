@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Cors from "cors";
 import { rebuff } from "@/lib/rebuff";
-import { ApiFailureResponse } from "@rebuff/sdk";
+import { ApiFailureResponse } from "@rebuff/sdk/api";
 import {
   runMiddleware,
   checkApiKeyAndReduceBalance,
