@@ -129,7 +129,7 @@ export async function detectPiUsingVectorDatabase(
       getEnvironmentVariable("PINECONE_INDEX_NAME")
     );
 
-    // Query similar embeddings
+    // // Query similar embeddings
     const queryResponse = await index.query({
       queryRequest: {
         vector: emb.data.data[0].embedding,
@@ -140,6 +140,9 @@ export async function detectPiUsingVectorDatabase(
 
     let topScore = 0;
     let countOverMaxVectorScore = 0;
+
+    // const topScore = 0;
+    // const countOverMaxVectorScore = 0;
 
     if (queryResponse.matches != undefined) {
       for (const match of queryResponse.matches) {

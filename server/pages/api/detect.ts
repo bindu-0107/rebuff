@@ -45,7 +45,7 @@ export default async function handler(
     }
 
     const {
-      userInputBase64,
+      input_base64,
       runHeuristicCheck = true,
       runVectorCheck = true,
       runLanguageModelCheck = true,
@@ -53,7 +53,9 @@ export default async function handler(
       maxModelScore = null,
       maxVectorScore = null,
     } = req.body;
+    console.log(req.body);
     try {
+      const userInputBase64 = input_base64;
       const resp = await rebuff.detectInjection({
         userInput: "",
         userInputBase64,
@@ -64,8 +66,10 @@ export default async function handler(
         maxModelScore,
         maxVectorScore,
       });
+      console.log(resp);
       return res.status(200).json(resp);
     } catch (error) {
+      console.error(error);
       return res.status(400).json({
         error: "bad_request",
         message: error.message,
